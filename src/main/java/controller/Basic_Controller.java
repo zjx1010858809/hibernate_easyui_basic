@@ -43,9 +43,9 @@ public class Basic_Controller<T> {
 	public void index(SearchInfo info, ModelMap m, HttpServletRequest req) throws Exception {
 		if(info.getPage()==-1&&info.getWhere().length()==0) m.put("list",ss.select());
 		else if(info.getPage()==-1)m.put("list",ss.select(info.getWhere(),info.getObjs()));
-		else m.put("list",ss.select(info.getPage(),info.getWhere(),info.getObjs()));
+		else m.put("list",ss.select(info.getPage(), info.getWhere(), info.getObjs()));
 	}
-	
+
 	@RequestMapping("delete")
 	public String delete(int id, ModelMap m, HttpServletRequest req) throws Exception {
 		ss.delete(ss.ById(id));
@@ -82,10 +82,9 @@ public class Basic_Controller<T> {
 	
 	@RequestMapping("index_json")
 	public @ResponseBody List<T> index_json(SearchInfo info, ModelMap m, HttpServletRequest req) throws Exception {
-		
 		if(info.getPage()==-1&&info.getWhere().length()==0) return  (List<T>) ss.select();
 		else if(info.getPage()==-1)return  (List<T>) ss.select(info.getWhere(),info.getObjs());
-		else return  (List<T>) ss.select(info.getPage(),info.getWhere(),info.getObjs());
+		else return  (List<T>) ss.select(info.getPage(), info.getWhere(), info.getObjs());
 	}
 	@RequestMapping("delete_json")
 	public @ResponseBody JsonInfo delete_json(T t, ModelMap m, HttpServletRequest req) throws Exception {

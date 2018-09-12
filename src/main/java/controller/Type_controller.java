@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +24,14 @@ public class Type_controller extends Basic_Controller<Type>{
 	
 
 	@Override
-	public void index(SearchInfo info, ModelMap m, HttpServletRequest req) throws Exception {
+	public List<Type> index_json(SearchInfo info, ModelMap m, HttpServletRequest req) throws Exception {
+		System.out.println(info.getPage());
+		System.out.println(req.getParameter("rows"));
 		String txt=req.getParameter("txt");
 		if(txt!=null&&txt.length()>0) {
-			info.setObjs(" where name=? ", txt);
+			info.setObjs(" where name like '%"+txt+"%'");
 		}
-		super.index(info, m, req);
+		return super.index_json(info, m, req);
 	}
 	
 	@Override

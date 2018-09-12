@@ -5,29 +5,29 @@
 <meta charset="utf-8">
 <title></title>
 
-<link href="easyui/themes/default/easyui.css"  rel="stylesheet" type="text/css"/>
-<link href="easyui/themes/icon.css"  rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="custom/uimaker/easyui.css">
+<link href="custom/uimaker/icon.css"  rel="stylesheet" type="text/css"/>
 
-<script type="text/javascript" src="easyui/jquery.min.js"></script>
-<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="custom/jquery.min.js"></script>
+<script type="text/javascript" src="custom/jquery.easyui.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	$('#dg').datagrid({  
-	    border:false,  
+	$('#dg').datagrid({
+	    border:true,  
 	    fitColumns:true,  
-	    singleSelect: true,  
-	    url:"Type/index_json",  
-	    columns:[[  
-	        {field:'id',title:'编号',width:30},  
-	        {field:'name',title:'名称',width:85} ,
-	        {field:'info',title:'类型',width:50,formatter: function(value,row,index){
+	    singleSelect: true,
+	    url:"Type/index_json",
+	    columns:[[
+	        {field:'id',title:'编号',align:'center',width:30},  
+	        {field:'name',title:'名称',align:'center',width:85} ,
+	        {field:'info',title:'类型',align:'center',width:50,formatter: function(value,row,index){
 	        	return value.name;
 	        }
 	       },
-	        {field:'operate',title:'操作',align:'center',width:$(this).width()*0.1, 
+	        {field:'operate',title:'操作',align:'center',width:50, 
 	        	  formatter:function(val, row, index){ 
 	        	    var str = '<a href="javascript:;" onclick="del('+index+');"  class="easyui-linkbutton" >删除</a>|<a href="javascript:;" onclick="editwin('+index+');"  class="easyui-linkbutton" >修改</a>'; 
-	        	    return str; 
+	        	    return str;
 	        	}} 
 	    ]]  
 	});  
@@ -74,16 +74,26 @@ function editwin(index){
 	openWin("修改","edit.jsp?id="+id);
 }
 </script>
-
+<script type="text/javascript">
+    function qq(value,name){
+    	$('#dg').datagrid('load',{
+    		txt: value
+    	});
+    }
+</script>
 </head>
 <body>
 
-        
-<table id="dg"  class="easyui-datagrid" style="width:600px;height:500px" toolbar="#tb">
+<table id="dg"  class="easyui-datagrid" style="width:99%;height:auto;" toolbar="#tb">
 </table>
-<div id="tb">
-	<a href="javascript:;" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addwin();">Add</a>
+<div id="tb" style="text-align: center;">
+	<a href="javascript:;" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addwin();"style="float: left;">新增</a>
+	
+	<input id="ss" class="easyui-searchbox" style="width:300px;" data-options="searcher:qq,prompt:'请出入查询内容...',menu:'#mm'"></input>
+	<div id="mm" style="width:120px;">
+    	<div data-options="name:'txt'">名称</div>
 	</div>
+</div>
 
 </body>
 </html>

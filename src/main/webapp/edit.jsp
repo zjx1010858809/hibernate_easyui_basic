@@ -22,24 +22,16 @@
 	<c:if test="${param.id!=null}">
 	<input type="hidden" name="id" value="${param.id}">
 	</c:if>
-		<table>
-			<tr>
-				<td>名称:</td>
-				<td><input name="name" type="text"></input></td>
-			</tr>
-			<tr>
-				<td>上级:</td>
-				<td>
-				<input id="cc" class="easyui-combobox" name="parentid"
-    data-options="valueField:'id',textField:'name',url:'Type_info/index_json'">
-				</td>
-			</tr>
 			
-			<tr>
-				<td></td>
-				<td><input type="button" value="保存" onclick="save();"></input></td>
-			</tr>
-		</table>
+				<label for="name">名称:</label>
+				<input id="aa" class="easyui-validatebox" type="text" name="name" data-options="required:true"></input>
+			
+				<label for="parentid">类型:</label>
+				<input id="cc" class="easyui-combobox" name="parentid" editable="false"
+    data-options="required:true,valueField:'id',textField:'name',url:'Type_info/index_json'">
+				
+				<input type="button" value="保存" onclick="save();"></input></td>
+			
 	</form>
 	<script type="text/javascript">
 	function save(){
@@ -49,12 +41,19 @@
 		$('#ff').form({
 		    url:url,
 		    onSubmit: function(){
-				// do some check
-				// return false to prevent submit;
+		    	if($("#aa").val().length==0){
+		    		$.messager.alert('提示','名称不能为空');
+		    		return false;
+		    	}else if($("#cc").val().length==0||$("#cc").val()==null){
+		    		$.messager.alert('提示','类型不能为空');
+		    		return false;
+		    	}else{
+		    		return true;
+		    	}
 		    },
 		    success:function(data){
-		    	$('#win').window('close');
-		    	$('#dg').datagrid('reload');
+		    		$('#win').window('close');
+			    	$('#dg').datagrid('reload');
 		    }
 		});
 		$('#ff').submit();

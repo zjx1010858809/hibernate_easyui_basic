@@ -13,7 +13,7 @@
 	<mvc:annotation-driven />
 	<!-- 静态资源处理 -->
 	<mvc:default-servlet-handler />
-
+ 
     <context:component-scan base-package="daoImpl"></context:component-scan>
 	<context:component-scan base-package="serviceImpl"></context:component-scan>
 	<context:component-scan base-package="controller"></context:component-scan>

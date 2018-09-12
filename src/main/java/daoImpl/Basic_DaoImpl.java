@@ -16,13 +16,13 @@ import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 public  class Basic_DaoImpl <T> extends HibernateDaoSupport  {
 	 
 	
-	@Resource(name="sessionFactory")//Îª¸¸ÀàHibernateDaoSupport×¢ÈësessionFactoryµÄÖµ
+	@Resource(name="sessionFactory")//Îªï¿½ï¿½ï¿½ï¿½HibernateDaoSupport×¢ï¿½ï¿½sessionFactoryï¿½ï¿½Öµ
 	public void setSuperSessionFactory(SessionFactory sessionFactory){
 		super.setSessionFactory(sessionFactory);
 	}
 
 	
-	public static int pageSize=6;
+	public static int pageSize=600;
 	
 	
 	public String getType() {

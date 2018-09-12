@@ -1,20 +1,19 @@
 package utils;
 
 public class SearchInfo {
+	
+	
 	private int page = -1;
 	public void setPage(int page) {
-	    this.page = page;
+		this.page = page;
 	}
 	public int getPage() {
 	    return page;
 	}
-	
-
 
 	String where="";
 	Object[] objs= {};
 
-	
 	
 	public void setObjs(String where ,Object... objs) {
 		this.objs = objs;
@@ -44,5 +43,5 @@ public class SearchInfo {
 	public Integer getPrev() {
 		return page>1?page-1:1;
 	}
-
+	
 }
